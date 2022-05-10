@@ -33,8 +33,7 @@ class talk : eosio::contract {
 
         // Create an ID if user didn't specify one
         eosio::check(id < 1'000'000'000ull, "user-specified id is too big");
-        if (!id)
-            id = std::max(table.available_primary_key(), 1'000'000'000ull);
+        if (!id) id = std::max(table.available_primary_key(), 1'000'000'000ull);
 
         // Record the message
         table.emplace(get_self(), [&](auto& message) {
