@@ -3,16 +3,19 @@
 #include <eosio/chain/permission_object.hpp>
 #include <eosio/chain/resource_limits.hpp>
 #include <eosio/testing/tester.hpp>
+#include <iostream>
 
 using namespace eosio;
 using namespace eosio::chain;
 using namespace eosio::testing;
 using namespace fc;
+using namespace std;
 
 BOOST_AUTO_TEST_SUITE(talk_tests)
 
 BOOST_AUTO_TEST_CASE(post) try {
     tester t{setup_policy::none};
+    cout<<"welcome!!!"<<endl;
 
     // Load contract
     t.create_account(N(talk));
@@ -23,6 +26,10 @@ BOOST_AUTO_TEST_CASE(post) try {
     // Create users
     t.create_account(N(john));
     t.create_account(N(jane));
+
+    cout<<"john account: "<<N(john)<<endl;
+    cout<<"jane account: "<<N(jane)<<endl;
+    cout<<"post account: "<<N(post)<<endl;
 
     // Test "post" action
     t.push_action(

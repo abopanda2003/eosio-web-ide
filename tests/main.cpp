@@ -2,7 +2,6 @@
 #include <boost/test/unit_test.hpp>
 #include <eosio/chain/exceptions.hpp>
 #include <fc/log/logger.hpp>
-#include <stdio>
 #include <iostream>
 
 using namespace std;
