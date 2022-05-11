@@ -28,6 +28,10 @@ enum BuildingType {
     None, HomeVillage, BuilderBase
 }
 
+enum FavoriteTarget {
+    None, Any
+}
+
 ///////////////////////////////////////  Modifier Structure //////////////////////////////////////////////
 
 struct [[table("GoldPassModifier"), contract("DefensiveBuilding")]] GoldPassModifier {
@@ -66,7 +70,8 @@ struct [[table("BuilderStatistics"), contract("DefensiveBuilding")]] BuilderStat
 
 ///////////////////////////////////////  Property Structure //////////////////////////////////////////////
 
-struct [[table("DefensiveProperty"), contract("DefensiveBuilding")]] DefensiveProperty1 {
+/* Cannon, Archer Tower, Mortar, Air Defense, Wizard Tower, Air Sweeper, Bomb Tower */
+struct [[table("DefensiveProperty1"), contract("DefensiveBuilding")]] DefensiveProperty1 {
     uint64_t range = {}; // Range
     uint64_t attackSpeed = {}; // Attack Speed (0.5s)
     DamageType damageType = {}; // Damage Type
@@ -78,7 +83,8 @@ struct [[table("DefensiveProperty"), contract("DefensiveBuilding")]] DefensivePr
     UnitTypeTargeted getUnitType() const { return unitType; }
 }
 
-struct [[table("DefensiveProperty"), contract("DefensiveBuilding")]] DefensiveProperty2 {
+/*  */
+struct [[table("DefensiveProperty2"), contract("DefensiveBuilding")]] DefensiveProperty2 {
     uint64_t range = {}; // Range
     uint64_t attackSpeed = {}; // Attack Speed (0.5s)
     DamageType damageType = {}; // Damage Type
@@ -92,10 +98,40 @@ struct [[table("DefensiveProperty"), contract("DefensiveBuilding")]] DefensivePr
     uint64_t getNumberOfRounds() const { return numberOfRounds; }
 }
 
+/* Hidden Tesla, */
+struct [[table("DefensiveProperty3"), contract("DefensiveBuilding")]] DefensiveProperty3 {
+    uint64_t range = {}; // Range
+    uint64_t triggerRange = {}; // Trigger Range
+    uint64_t attackSpeed = {}; // Attack Speed (0.5s)
+    DamageType damageType = {}; // Damage Type
+    UnitTypeTargeted unitType = {}; // Unit Type Targeted
+    FavoriteTarget favTarget = {}; // Favorite Target
+
+    uint64_t getRange() const { return range; }
+    uint64_t getTriggerRange() const { return range; }
+    uint64_t getAttackSpeed() const { return attackSpeed; }
+    DamageType getDamageType() const { return damageType; }
+    UnitTypeTargeted getUnitType() const { return unitType; }
+    FavoriteTarget getFavoriteTarget() const { return favTarget; }
+}
+
+/* X-Bow */
+struct [[table("DefensiveProperty4"), contract("DefensiveBuilding")]] DefensiveProperty4 {
+    uint64_t range = {}; // Range
+    uint64_t attackSpeed = {}; // Attack Speed (0.5s)
+    DamageType damageType = {}; // Damage Type
+    uint64_t numberOfRounds = {}; // Number Of Rounds
+
+    uint64_t getRange() const { return range; }
+    uint64_t getAttackSpeed() const { return attackSpeed; }
+    DamageType getDamageType() const { return damageType; }
+    uint64_t getNumberOfRounds() const { return numberOfRounds; }
+}
+
 ///////////////////////////////////////  General Structure //////////////////////////////////////////////
 
-/* Cannon, ArcherTower, Mortar  */
-struct [[table("DefensiveBuildingInterface1"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral1 {
+/* Cannon, Archer Tower, Mortar, Wizard Tower, Hidden Tesla, X-Bow */
+struct [[table("DefensiveBuildingGeneral1"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral1 {
     uint64_t level = {}; // Level
     uint64_t size = {}; // The size of building (1*1, 2*2, 3*3, ...)
     uint64_t damagePerSec = {}; // Damage Per Second
@@ -117,12 +153,55 @@ struct [[table("DefensiveBuildingInterface1"), contract("DefensiveBuilding")]] D
     uint64_t getTownHallLevelRequired() const { return townHallLevelRequired; }
 }
 
-/* Air Defense */
-struct [[table("DefensiveBuildingInterface1"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral2 {
+/* Air Defense, */
+struct [[table("DefensiveBuildingGeneral2"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral2 {
+    uint64_t level = {}; // Level
+    uint64_t size = {}; // The size of building (1*1, 2*2, 3*3, ...)
+    uint64_t damagePerSec = {}; // Damage Per Second
+    uint64_t hitPoints = {}; // Hitpoints
+    uint64_t buildCost = {}; // Build Cost
+    uint64_t buildTime = {}; // Build Time(second)
+    uint64_t expGained = {}; // Experience Gained
+    uint64_t townHallLevelRequired = {}; // Town Hall Level Required
+
+    uint64_t getLevel() const { return level; }
+    uint64_t getSize() const { return size; }
+    uint64_t getDamagePerSec() const { return damagePerSec; }
+    uint64_t getHitPoints() const { return hitPoints; }
+    uint64_t getBuildCost() const { return buildCost; }
+    uint64_t getBuildTime() const { return buildTime; }
+    uint64_t getExpGained() const { return expGained; }
+    uint64_t getTownHallLevelRequired() const { return townHallLevelRequired; }
+}
+
+/* Air Sweeper */
+struct [[table("DefensiveBuildingGeneral3"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral3 {
+    uint64_t level = {}; // Level
+    uint64_t size = {}; // The size of building (1*1, 2*2, 3*3, ...)
+    uint64_t pushStrength = {}; // Push Strength
+    uint64_t hitPoints = {}; // Hitpoints
+    uint64_t buildCost = {}; // Build Cost
+    uint64_t buildTime = {}; // Build Time(second)
+    uint64_t expGained = {}; // Experience Gained
+    uint64_t townHallLevelRequired = {}; // Town Hall Level Required
+
+    uint64_t getLevel() const { return level; }
+    uint64_t getSize() const { return size; }
+    uint64_t getPushStrength() const { return pushStrength; }
+    uint64_t getHitPoints() const { return hitPoints; }
+    uint64_t getBuildCost() const { return buildCost; }
+    uint64_t getBuildTime() const { return buildTime; }
+    uint64_t getExpGained() const { return expGained; }
+    uint64_t getTownHallLevelRequired() const { return townHallLevelRequired; }
+}
+
+/*  Bomb Tower, */
+struct [[table("DefensiveBuildingGeneral4"), contract("DefensiveBuilding")]] DefensiveBuildingGeneral4 {
     uint64_t level = {}; // Level
     uint64_t size = {}; // The size of building (1*1, 2*2, 3*3, ...)
     uint64_t damagePerSec = {}; // Damage Per Second
     uint64_t damagePerShot = {}; // Damage Per Shot
+    uint64_t damageWhenDestroyed = {}; // Damage When Destroyed
     uint64_t hitPoints = {}; // Hitpoints
     uint64_t buildCost = {}; // Build Cost
     uint64_t buildTime = {}; // Build Time(second)
@@ -133,6 +212,7 @@ struct [[table("DefensiveBuildingInterface1"), contract("DefensiveBuilding")]] D
     uint64_t getSize() const { return size; }
     uint64_t getDamagePerSec() const { return damagePerSec; }
     uint64_t getDamagePerShot() const { return damagePerShot; }
+    uint64_t getDamageWhenDestroyed() const { return damageWhenDestroyed; }
     uint64_t getHitPoints() const { return hitPoints; }
     uint64_t getBuildCost() const { return buildCost; }
     uint64_t getBuildTime() const { return buildTime; }
