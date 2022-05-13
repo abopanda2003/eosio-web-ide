@@ -15,7 +15,6 @@ BOOST_AUTO_TEST_SUITE(talk_tests)
 
 BOOST_AUTO_TEST_CASE(post) try {
     tester t{setup_policy::none};
-    cout<<"welcome!!!"<<endl;
 
     // Load contract
     t.create_account(N(talk));
